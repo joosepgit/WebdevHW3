@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+//import Vuex from 'vuex'
+import VueRouter from 'vue-router'//impordib komponendi
 import App from './App.vue'
 import Main from './components/Main.vue'
 import Browse from './components/Browse.vue'
