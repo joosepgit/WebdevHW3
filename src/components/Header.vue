@@ -8,10 +8,10 @@
         <input type="text" name="search"><button type="button">Search</button>
       </div>
       <div class="avatar-container">
-        <img class="avatar" :class="{ active: isActive }" @click="isActive = !isActive">
-        <div class="drop-down-container">
-          <span id="user-name">John Doe</span>
-          <span id="user-email"></span>
+        <img :src="user.avatar" class="avatar" @click="dropMenu">
+        <div id="dropdown" class="drop-down-container" ref="dropDown">
+          <span id="user-name">{{ user.firstname }}</span>
+          <span id="user-email">{{ user.email }}</span>
           <span class="separator"></span>
           <span>
               <router-link to="/browse">Browse</router-link>
@@ -29,7 +29,22 @@
 <script>
 export default {
   name: "Header",
-  methods: {},
+  computed: {
+    user() {
+      return this.$store.getters.thisUser
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getUser");
+  },
+  methods: {
+    dropMenu: function() {
+
+      let dropDown = this.$refs.dropDown
+      if (dropDown.style.display === "none") dropDown.style.display = "block";
+      else dropDown.style.display = "none";
+    }
+  },
 }
 </script>
 
